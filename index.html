@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gergő Fertetics - Senior Software Engineer</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono:wght@400&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Share Tech Mono', monospace;
+            background: #000;
+            color: #00ff00;
+            overflow-x: hidden;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        /* CRT Effect */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 2px,
+                    rgba(0, 255, 0, 0.03) 2px,
+                    rgba(0, 255, 0, 0.03) 4px
+                );
+            pointer-events: none;
+            z-index: 1000;
+        }
+
+        /* Flickering effect */
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 255, 0, 0.02);
+            pointer-events: none;
+            z-index: 999;
+            animation: flicker 0.15s infinite linear alternate;
+        }
+
+        @keyframes flicker {
+            0% { opacity: 1; }
+            100% { opacity: 0.96; }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .terminal-header {
+            border: 2px solid #00ff00;
+            background: rgba(0, 20, 0, 0.8);
+            padding: 10px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .terminal-title {
+            text-align: center;
+            font-size: 1.2em;
+            text-shadow: 0 0 10px #00ff00;
+            margin-bottom: 10px;
+        }
+
+        .terminal-info {
+            font-size: 0.8em;
+            text-align: center;
+            opacity: 0.8;
+        }
+
+        .boot-sequence {
+            margin-bottom: 30px;
+            font-size: 0.9em;
+            line-height: 1.4;
+        }
+
+        .boot-line {
+            opacity: 0;
+            animation: typewriter 0.5s forwards;
+            margin-bottom: 2px;
+        }
+
+        .boot-line:nth-child(1) { animation-delay: 0.5s; }
+        .boot-line:nth-child(2) { animation-delay: 1s; }
+        .boot-line:nth-child(3) { animation-delay: 1.5s; }
+        .boot-line:nth-child(4) { animation-delay: 2s; }
+        .boot-line:nth-child(5) { animation-delay: 2.5s; }
+
+        @keyframes typewriter {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .section {
+            border: 1px solid #00ff00;
+            background: rgba(0, 30, 0, 0.3);
+            margin-bottom: 20px;
+            padding: 20px;
+            position: relative;
+            animation: slideIn 0.8s ease-out forwards;
+            opacity: 0;
+        }
+
+        .section:nth-child(even) { animation-delay: 0.3s; }
+        .section:nth-child(odd) { animation-delay: 0.6s; }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .section-title {
+            font-size: 1.3em;
+            margin-bottom: 15px;
+            color: #00ffff;
+            text-shadow: 0 0 5px #00ffff;
+            border-bottom: 1px solid #00ff00;
+            padding-bottom: 5px;
+        }
+
+        .section-title::before {
+            content: '> ';
+            color: #ff0000;
+            text-shadow: 0 0 5px #ff0000;
+        }
+
+        .prompt {
+            color: #ffff00;
+            text-shadow: 0 0 5px #ffff00;
+        }
+
+        .prompt::before {
+            content: '$ ';
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .skill-item {
+            background: rgba(0, 255, 0, 0.1);
+            border: 1px solid #00ff00;
+            padding: 10px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .skill-item:hover {
+            background: rgba(0, 255, 0, 0.2);
+            box-shadow: 0 0 15px rgba(0, 255, 0, 0.5);
+            transform: scale(1.05);
+        }
+
+        .experience-item {
+            margin-bottom: 20px;
+            padding: 15px;
+            border-left: 3px solid #00ffff;
+            background: rgba(0, 255, 255, 0.05);
+        }
+
+        .job-title {
+            color: #ffff00;
+            font-size: 1.1em;
+            text-shadow: 0 0 5px #ffff00;
+        }
+
+        .company {
+            color: #ff6600;
+            font-weight: bold;
+            margin-top: 5px;
+        }
+
+        .duration {
+            color: #00ffff;
+            font-size: 0.9em;
+            margin-top: 5px;
+        }
+
+        .description {
+            margin-top: 10px;
+            line-height: 1.5;
+            opacity: 0.9;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            background: rgba(0, 255, 0, 0.1);
+            border: 1px solid #00ff00;
+        }
+
+        .contact-item:hover {
+            background: rgba(0, 255, 0, 0.2);
+            box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+        }
+
+        .contact-icon {
+            margin-right: 10px;
+            color: #00ffff;
+            text-shadow: 0 0 5px #00ffff;
+        }
+
+        .blinking-cursor {
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+
+        .matrix-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            opacity: 0.1;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .section-title {
+                font-size: 1.1em;
+            }
+            
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Neon glow effects */
+        .glow {
+            text-shadow: 
+                0 0 5px currentColor,
+                0 0 10px currentColor,
+                0 0 15px currentColor;
+        }
+
+        /* ASCII Art Header */
+        .ascii-art {
+            font-size: 0.7em;
+            line-height: 1;
+            text-align: center;
+            margin: 20px 0;
+            color: #00ffff;
+            text-shadow: 0 0 10px #00ffff;
+        }
+    </style>
+</head>
+<body>
+    <canvas class="matrix-bg" id="matrix"></canvas>
+    
+    <div class="container">
+        <div class="terminal-header">            <div class="terminal-title glow">
+                SENIOR SOFTWARE ENGINEER - SYSTEM INITIALIZED
+            </div>
+            <div class="terminal-info">
+                [SYSTEM STATUS: ONLINE] | [USER: GERGO.FERTETICS] | [ACCESS LEVEL: ADMINISTRATOR]
+            </div>
+        </div>
+
+        <div class="boot-sequence">
+            <div class="boot-line">Loading engineer.exe...</div>
+            <div class="boot-line">Initializing skill modules... OK</div>
+            <div class="boot-line">Loading experience database... OK</div>
+            <div class="boot-line">Establishing neural network connections... OK</div>
+            <div class="boot-line">System ready. Welcome to CV interface v2.5</div>
+        </div>
+
+        <div class="ascii-art">
+███████╗███████╗███╗   ██╗██╗ ██████╗ ██████╗ 
+██╔════╝██╔════╝████╗  ██║██║██╔═══██╗██╔══██╗
+███████╗█████╗  ██╔██╗ ██║██║██║   ██║██████╔╝
+╚════██║██╔══╝  ██║╚██╗██║██║██║   ██║██╔══██╗
+███████║███████╗██║ ╚████║██║╚██████╔╝██║  ██║
+╚══════╝╚══════╝╚═╝  ╚═══╝╚═╝ ╚═════╝ ╚═╝  ╚═╝
+        </div>        <div class="section">
+            <h2 class="section-title">PERSONAL_INFO.exe</h2>
+            <div class="prompt">name: "Gergő Fertetics"</div>
+            <div class="prompt">role: "Senior Software Engineer & Technical Leader"</div>
+            <div class="prompt">location: "1073 Budapest, Erzsébet körút 41"</div>
+            <div class="prompt">experience: "12+ years in enterprise systems & development"</div>
+            <div class="prompt">specialization: "High-performance systems, microservices & team leadership"</div>
+            <div class="prompt">birth: "30.03.1990, Győr"</div>
+        </div>        <div class="section">
+            <h2 class="section-title">CORE_SKILLS.dll</h2>            <div class="skills-grid">
+                <div class="skill-item">Enterprise Systems Design</div>
+                <div class="skill-item">Microservices Design</div>
+                <div class="skill-item">High-Performance Systems</div>
+                <div class="skill-item">Cloud-Native Development</div>
+                <div class="skill-item">Event-Driven Systems</div>
+                <div class="skill-item">Legacy System Migration</div>
+                <div class="skill-item">Performance Optimization</div>
+                <div class="skill-item">CI/CD Engineering</div>
+                <div class="skill-item">Database Design</div>
+                <div class="skill-item">Team Leadership</div>
+                <div class="skill-item">Agile Methodologies</div>
+                <div class="skill-item">System Integration</div>
+            </div>
+        </div>        <div class="section">
+            <h2 class="section-title">TECH_STACK.cfg</h2>
+            <div class="skills-grid">
+                <div class="skill-item">Java / Quarkus / Spring Boot</div>
+                <div class="skill-item">C++ / High-Performance Computing</div>
+                <div class="skill-item">Python / Automation</div>
+                <div class="skill-item">React / Angular / NodeJS</div>
+                <div class="skill-item">AWS / GCP / Kubernetes</div>
+                <div class="skill-item">Oracle / PostgreSQL / MongoDB</div>
+                <div class="skill-item">InfluxDB / Prometheus / Grafana</div>
+                <div class="skill-item">Docker / CaaS / Helm</div>
+                <div class="skill-item">Jenkins / CI/CD / Bazel</div>
+                <div class="skill-item">EventLink / AbInitio / BMC ARS</div>
+                <div class="skill-item">Diameter / MQ / WebSocket</div>
+                <div class="skill-item">JUnit / Selenium / Robot</div>
+            </div>
+        </div>        <div class="section">
+            <h2 class="section-title">WORK_EXPERIENCE.log</h2>
+            
+            <div class="experience-item">
+                <div class="job-title">Senior Software Engineer</div>
+                <div class="company">solutio GmbH - Charly Praxis Management</div>
+                <div class="duration">Jun 2023 - Present</div>
+                <div class="description">
+                    • <strong>Healthcare System Development</strong> - Designing and developing Spring Boot services for Charly praxis management software to fulfill German electronic health system requirements<br>
+                    • <strong>Hexagonal Microservices Design</strong> - Created new microservice system with 30+ services replacing legacy Objective-C monolithic application<br>
+                    • <strong>Service Orchestration</strong> - Implemented service discovery, orchestration, and database query services for legacy data integration<br>
+                    • <strong>Modern Frontend Migration</strong> - Led React Redux with Material-UI frontend migration from legacy desktop application<br>
+                    • <strong>AI Integration</strong> - Integrated AI agents and implemented AI-driven coding solutions to enhance healthcare workflows
+                </div>
+            </div>
+
+            <div class="experience-item">
+                <div class="job-title">Senior Software Engineer</div>
+                <div class="company">Deutsche Telekom IT Hungary - ACC Project</div>
+                <div class="duration">2022 - 2023</div>                <div class="description">
+                    • <strong>Complete System Modernization</strong> - Leading the replacement of legacy BMC ARS system with cloud-native Java microservices<br>
+                    • <strong>High-Performance Microservices</strong> - Implemented Quarkus-based services for fast data access and manipulation in telecom customer assurance systems<br>
+                    • <strong>Full-Stack Development</strong> - Designed and built modern React interface to replace legacy ARS system, establishing new development patterns<br>
+                    • <strong>DevOps & Automation</strong> - Implemented complete CI/CD automation and application lifecycle management using Helm Charts and CaaS platforms<br>
+                    • <strong>Integration Strategy</strong> - Designed continuous cooperation frameworks and bilateral testing strategies with multiple interface partners
+                </div>
+            </div>
+
+            <div class="experience-item">
+                <div class="job-title">Vice President - Development Framework Lead</div>
+                <div class="company">Morgan Stanley - D1 Trading Systems</div>
+                <div class="duration">2021 - 2022</div>                <div class="description">
+                    • <strong>High-Performance Financial Systems</strong> - Developed next-generation framework for algorithmic trading applications with low-latency, zero-GC Java implementations<br>
+                    • <strong>Event Sourcing & Memory Management</strong> - Implemented event sourcing patterns, shared memory (shmem), and reliable multicast for ultra-low latency trading systems<br>
+                    • <strong>Scalable Testing Framework</strong> - Designed and maintained 30,000+ unit and performance test cases, including legacy test migration using custom Python automation tools<br>
+                    • <strong>Monitoring & Metrics Systems</strong> - Modernized health monitoring by replacing RDBMS/JavaFX with InfluxDB/Grafana, improving system observability<br>
+                    • <strong>Performance Engineering</strong> - Led performance testing and forecasting of algorithmic trading features, optimizing resource allocation and reliability
+                </div>
+            </div>
+
+            <div class="experience-item">
+                <div class="job-title">Head of People Unit - Engineering Leadership</div>
+                <div class="company">Deutsche Telekom IT Hungary</div>
+                <div class="duration">2020 - 2021</div>                <div class="description">
+                    • <strong>Organizational Transformation</strong> - Led transformation of 30 backend engineers into new agile organizational structure, pioneering scalable team frameworks<br>
+                    • <strong>Technical Leadership Strategy</strong> - Created upskilling and cooperation models for backend engineers across international teams<br>
+                    • <strong>Systems Thinking</strong> - Applied systematic thinking to people management, treating team structure as scalable, maintainable systems<br>
+                    • <strong>Process Design</strong> - Designed training, career progression, and communication frameworks for engineering teams
+                </div>
+            </div>
+
+            <div class="experience-item">
+                <div class="job-title">Senior Software Engineer - Billing Systems</div>
+                <div class="company">Deutsche Telekom IT Hungary - ABILIT</div>
+                <div class="duration">2018 - 2020</div>                <div class="description">
+                    • <strong>Enterprise System Management</strong> - Maintained and optimized AbInitio-based billing system processing millions of telecom transactions<br>
+                    • <strong>Database Optimization</strong> - Designed complex Oracle Stored Procedures and PL/SQL optimizations for high-volume data processing<br>
+                    • <strong>System Integration</strong> - Implemented features and interfaces for billing system partners, ensuring seamless data flow and system reliability<br>
+                    • <strong>Performance Engineering</strong> - Conducted end-to-end performance testing and optimization of critical billing infrastructure components
+                </div>
+            </div>
+
+            <div class="experience-item">
+                <div class="job-title">Agile Lead & Configuration Manager</div>
+                <div class="company">Deutsche Telekom IT Hungary - IPMRS</div>
+                <div class="duration">2014 - 2018</div>                <div class="description">
+                    • <strong>DevOps Transformation Pioneer</strong> - Led agile transformation as servant leader, designing new development methodologies for telecom systems<br>
+                    • <strong>Source Control Migration</strong> - Designed and executed migration from IBM ClearCase to Git, establishing new version control patterns<br>
+                    • <strong>Release Management Systems</strong> - Created configuration, source, build, and release management frameworks for distributed development teams<br>
+                    • <strong>Process Optimization</strong> - Designed release planning and resource management systems for complex telecom infrastructure projects
+                </div>
+            </div>
+
+            <div class="experience-item">
+                <div class="job-title">Software Engineer - Telecom Systems</div>
+                <div class="company">Deutsche Telekom IT Hungary - IPMRS</div>
+                <div class="duration">2012 - 2018</div>                <div class="description">
+                    • <strong>High-Performance Data Processing</strong> - Designed C++ and Java nodes for Comptel EventLink framework processing telecom usage data<br>
+                    • <strong>High Availability Systems</strong> - Built and maintained HA Diameter collector clusters for real-time telecom data processing<br>
+                    • <strong>Database Migration Strategy</strong> - Led complex migration from Oracle DB to PostgreSQL and Couchbase, ensuring zero-downtime transitions<br>
+                    • <strong>Performance Testing Framework</strong> - Created comprehensive Diameter load testing tools and performance measurement frameworks<br>
+                    • <strong>International Deployment Support</strong> - Designed deployment strategies and provided on-site support for international operations
+        </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">SOLO_PROJECTS.exe</h2>
+            
+            <div class="experience-item">
+                <div class="job-title">Sports Tournament Management Platform</div>
+                <div class="company">xantolohandball.com & y-sportss.xyz</div>
+                <div class="duration">2023 - Present</div>
+                <div class="description">
+                    • <strong>Full-Stack Tournament System</strong> - Built comprehensive sports tournament management platform using React frontend and Java Spring Boot microservices<br>
+                    • <strong>Authentication & Security</strong> - Integrated Keycloak for secure user management and role-based access control<br>
+                    • <strong>Live Event Management</strong> - Successfully served handball tournament with 60+ teams, handling real-time match data and team management<br>
+                    • <strong>Mobile Integration</strong> - Developed Android app for live match protocalling and real-time score updates<br>
+                    • <strong>Streaming Innovation</strong> - Created custom OBS plugins for live streaming integration, enabling automated tournament broadcasts<br>
+                    • <strong>Real-Time Data Processing</strong> - Implemented WebSocket-based live updates for tournament brackets and scoring systems
+                </div>
+            </div>        </div>
+
+        <div class="section">
+            <h2 class="section-title">ACHIEVEMENTS.dat</h2>
+            <div class="prompt">certified_scrum_master: "Scrum Alliance (2015)"</div>
+            <div class="prompt">education: "Computer Science, ELTE University (2009-2013)"</div>
+            <div class="prompt">system_migrations: "Led 3+ major system modernization projects"</div>
+            <div class="prompt">performance_optimization: "Optimized trading systems for zero-GC performance"</div>
+            <div class="prompt">team_leadership: "Managed 30+ engineers in agile transformation"</div>
+            <div class="prompt">languages: "English C1, German B2, Hungarian Native"</div>
+            <div class="prompt">enterprise_systems: "12+ years Deutsche Telekom & Morgan Stanley"</div>
+        </div><div class="section">
+            <h2 class="section-title">CONTACT.ini</h2>
+            <div class="contact-grid">
+                <div class="contact-item">
+                    <span class="contact-icon">📧</span>
+                    <span>g.fertetics@hotmail.com</span>
+                </div>
+                <div class="contact-item">
+                    <span class="contact-icon">📱</span>
+                    <span>+36 30 223 2574</span>
+                </div>
+                <div class="contact-item">
+                    <span class="contact-icon">🏠</span>
+                    <span>1073 Budapest, Erzsébet körút 41</span>
+                </div>
+                <div class="contact-item">
+                    <span class="contact-icon">💼</span>
+                    <span>Available for senior engineering roles</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="terminal-header" style="margin-top: 30px;">
+            <div class="terminal-info">
+                [END OF TRANSMISSION] | [PROCESS COMPLETED] | [AWAITING INPUT...]<span class="blinking-cursor">_</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Matrix background effect
+        const canvas = document.getElementById('matrix');
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const characters = '01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン';
+        const fontSize = 14;
+        const columns = canvas.width / fontSize;
+
+        const drops = [];
+        for (let x = 0; x < columns; x++) {
+            drops[x] = 1;
+        }
+
+        function drawMatrix() {
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            ctx.fillStyle = '#00ff00';
+            ctx.font = fontSize + 'px monospace';
+
+            for (let i = 0; i < drops.length; i++) {
+                const text = characters.charAt(Math.floor(Math.random() * characters.length));
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                    drops[i] = 0;
+                }
+                drops[i]++;
+            }
+        }
+
+        setInterval(drawMatrix, 35);
+
+        // Resize canvas on window resize
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+
+        // Add some interactive elements
+        document.addEventListener('DOMContentLoaded', () => {
+            // Add typing sound effect simulation
+            const sections = document.querySelectorAll('.section');
+            sections.forEach((section, index) => {
+                section.style.animationDelay = `${index * 0.5}s`;
+            });
+
+            // Add hover effects for skill items
+            const skillItems = document.querySelectorAll('.skill-item');
+            skillItems.forEach(item => {
+                item.addEventListener('mouseenter', () => {
+                    item.style.borderColor = '#00ffff';
+                    item.style.color = '#00ffff';
+                });
+                item.addEventListener('mouseleave', () => {
+                    item.style.borderColor = '#00ff00';
+                    item.style.color = '#00ff00';
+                });
+            });
+        });
+    </script>
+</body>
+</html>
