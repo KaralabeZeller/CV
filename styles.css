@@ -301,15 +301,31 @@ body[data-theme="light"] .name {
     margin-bottom: 30px;
     padding: 20px;
     background: #111;
-    border-left: 3px solid #444;
+    border-left: 3px solid #5a8db8;
     border-radius: 4px;
     transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.experience-item.telekom {
+    border-left-color: #c17a9b;
+}
+
+.experience-item.private-project {
+    border-left-color: #666;
 }
 
 @media (prefers-color-scheme: light) {
     .experience-item {
         background: #ffffff;
-        border-left: 3px solid #cbd5e0;
+        border-left: 3px solid #6b9bd2;
+    }
+    
+    .experience-item.telekom {
+        border-left-color: #b8859f;
+    }
+    
+    .experience-item.private-project {
+        border-left-color: #999;
     }
 }
 
@@ -506,7 +522,9 @@ body[data-theme="light"] .info-label { color: #718096; }
 body[data-theme="light"] .skill-category { background: #ffffff; border-color: #e2e8f0; }
 body[data-theme="light"] .skill-category h4 { color: #1a202c; }
 body[data-theme="light"] .skill-list { color: #4a5568; }
-body[data-theme="light"] .experience-item { background: #ffffff; border-left-color: #cbd5e0; }
+body[data-theme="light"] .experience-item { background: #ffffff; border-left-color: #6b9bd2; }
+body[data-theme="light"] .experience-item.telekom { border-left-color: #b8859f; }
+body[data-theme="light"] .experience-item.private-project { border-left-color: #999; }
 body[data-theme="light"] .job-title { color: #1a202c; }
 body[data-theme="light"] .company { color: #4a5568; }
 body[data-theme="light"] .duration { color: #718096; }
@@ -530,7 +548,9 @@ body[data-theme="dark"] .info-label { color: #888; }
 body[data-theme="dark"] .skill-category { background: #1a1a1a; border-color: #333; }
 body[data-theme="dark"] .skill-category h4 { color: #fff; }
 body[data-theme="dark"] .skill-list { color: #aaa; }
-body[data-theme="dark"] .experience-item { background: #111; border-left-color: #444; }
+body[data-theme="dark"] .experience-item { background: #111; border-left-color: #5a8db8; }
+body[data-theme="dark"] .experience-item.telekom { border-left-color: #c17a9b; }
+body[data-theme="dark"] .experience-item.private-project { border-left-color: #666; }
 body[data-theme="dark"] .job-title { color: #ffffff; }
 body[data-theme="dark"] .company { color: #888; }
 body[data-theme="dark"] .duration { color: #666; }

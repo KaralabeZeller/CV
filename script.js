@@ -43,6 +43,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initialize theme manager
     themeManager.init();
 
+    // Add colored borders to experience items
+    addExperienceColors();
+
     // Add subtle fade-in animation for sections
     const sections = document.querySelectorAll('.section');
     sections.forEach((section, index) => {
@@ -56,3 +59,21 @@ document.addEventListener('DOMContentLoaded', () => {
         }, index * 100);
     });
 });
+
+// Function to add colored borders to experience items
+function addExperienceColors() {
+    const experienceItems = document.querySelectorAll('.experience-item');
+    
+    experienceItems.forEach(item => {
+        const companyElement = item.querySelector('.company');
+        if (companyElement) {
+            const companyText = companyElement.textContent;
+            
+            if (companyText.includes('Deutsche Telekom')) {
+                item.classList.add('telekom');
+            } else if (companyText.includes('xantolohandball.com') || companyText.includes('y-sports.xyz')) {
+                item.classList.add('private-project');
+            }
+        }
+    });
+}
