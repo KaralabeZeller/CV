@@ -11,12 +11,27 @@
     <title>Gergő Fertetics - Technical Lead</title>
     <link rel="stylesheet" href="styles.css">
 </head>
-<body>    <div class="container">
-        <!-- Theme Switcher -->
+<body>    <div class="container">        <!-- Theme Switcher -->
         <div class="theme-switcher">
-            <button class="theme-button theme-dark" data-theme="dark" title="Dark Mode">🌙</button>
-            <button class="theme-button theme-light" data-theme="light" title="Light Mode">☀️</button>
-            <button class="theme-button theme-auto active" data-theme="auto" title="Auto (System)">🔄</button>
+            <button class="theme-button theme-dark" data-theme="dark" title="Dark Mode">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                </svg>
+            </button>
+            <button class="theme-button theme-light" data-theme="light" title="Light Mode">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                    <circle cx="12" cy="12" r="5"/>
+                    <path d="m12 1-2 2 2 2 2-2-2-2ZM19 12l2-2-2-2-2 2 2 2ZM12 23l2-2-2-2-2 2 2 2ZM5 12l-2 2 2 2 2-2-2-2Z"/>
+                    <path d="M7.05 7.05 5.64 5.64l-1.41 1.41L5.64 8.46 7.05 7.05ZM18.36 16.95l1.41-1.41-1.41-1.41-1.41 1.41 1.41 1.41ZM16.95 7.05l1.41-1.41-1.41-1.41-1.41 1.41 1.41 1.41ZM7.05 16.95l-1.41 1.41 1.41 1.41 1.41-1.41-1.41-1.41Z"/>
+                </svg>
+            </button>
+            <button class="theme-button theme-auto active" data-theme="auto" title="Auto (System)">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                    <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+                    <line x1="8" y1="21" x2="16" y2="21"/>
+                    <line x1="12" y1="17" x2="12" y2="21"/>
+                </svg>
+            </button>
         </div>
 
         <div class="header">
@@ -31,11 +46,11 @@
             <h2 class="section-title">About</h2>
             <div class="info-item">
                 <span class="info-label">Experience:</span>
-                <span>13+ years in enterprise systems & development</span>
+                <span>13+ years in enterprise development, architecture & system design</span>
             </div>
             <div class="info-item">
                 <span class="info-label">Specialization:</span>
-                <span>High-performance systems, microservices & team leadership</span>
+                <span>Microservices architecture, high-performance systems & technical leadership</span>
             </div>
             <div class="info-item">
                 <span class="info-label">Location:</span>
@@ -86,14 +101,13 @@
                     <div class="job-title">Technical Consultant - Lead</div>
                     <div class="company">Solutio GmbH - Charly Praxis Management</div>
                     <div class="duration">Jun 2023 - Present</div>
-                </div>
-                <div class="description">
-                    <strong>Healthcare Software Development</strong>Designing and development of a medical practice management software that helps German doctors comply with electronic health record regulations<br/>
-                    <strong>System Modernization</strong>Replacing outdated desktop application with modern web-based system consisting of 30+ interconnected services for better scalability and maintenance<br>
-                    <strong>Service Coordination</strong>Co-created a central coordination system that manages communication between different software components<br>
-                    <strong>Hexagonal Architecture</strong>Establishing maintainable software design patterns across all development teams<br>
-                    <strong>User Interface Modernization</strong> Migrating from old desktop interface to ReactJs and Material UI<br>
-                    <strong>AI-Powered Features</strong>Integrated artificial intelligence to automate routine tasks and improve healthcare workflow efficiency
+                </div>                <div class="description">
+                    <strong>Healthcare System Architecture</strong>Architected and led development of a comprehensive medical practice management platform that enables German doctors to comply with electronic health record regulations<br/>
+                    <strong>Microservices Transformation</strong>Designed and implemented modern microservices architecture replacing monolithic desktop application with 30+ interconnected services for enhanced scalability and maintainability<br>
+                    <strong>Service Orchestration</strong>Architected central coordination system that manages inter-service communication and workflow orchestration across distributed healthcare components<br>
+                    <strong>Hexagonal Architecture Implementation</strong>Established domain-driven design patterns and hexagonal architecture principles across all development teams to ensure maintainable and testable code<br>
+                    <strong>Frontend Architecture Modernization</strong>Led architectural migration from legacy desktop interface to modern React-based web architecture with Material UI design system<br>
+                    <strong>AI Integration Architecture</strong>Designed AI-powered system components that automate healthcare workflows and integrate seamlessly with existing enterprise systems
                 </div>
             </div>            <div class="experience-item">
                 <div class="job-header">
@@ -116,6 +130,8 @@
                     <strong>Financial Trading Platform</strong>Built cutting-edge software framework for high-frequency stock trading, processing thousands of trades per second with minimal delay<br>
                     <strong>Ultra-Fast Data Processing</strong>Implemented specialized data handling techniques that ensure trading decisions happen in microseconds, critical for competitive advantage<br>
                     <strong>Quality Assurance</strong>Managed massive test suite migration with 30,000+ test from JUnit 4 to JUnit5 using custom tools<br>
+                    <strong>Zero-GC Performance</strong>Optimized system to achieve zero garbage collection pauses, ensuring uninterrupted trading operations<br>
+                    <strong>Reactive Java</strong>Utilized reactive programming principles to build responsive and resilient trading applications<br>
                     <strong>System Monitoring</strong>Replaced outdated monitoring system with modern real-time dashboards, giving traders immediate visibility into system performance
                 </div>
             </div>            <div class="experience-item">
@@ -139,6 +155,7 @@
                 <div class="description">
                     <strong>Telecom Billing Systems</strong>Maintained critical billing infrastructure that processes millions of customer transactions daily for Deutsche Telekom<br>
                     <strong>Data Processing Optimization</strong>Improved system performance and reliability for handling large-scale telecom billing operations<br>
+                    <strong>Stored Procedures</strong>Developed and optimized complex SQL stored procedures for efficient data retrieval and processing in high-volume environments<br>
                     <strong>Legacy System Maintenance</strong>Ensured continuous operation of mission-critical billing systems serving millions of customers
                 </div>
             </div>
@@ -171,11 +188,13 @@
             </div>
         </div>        <div class="section">
             <h2 class="section-title">Private Projects</h2>
-            
-            <div class="experience-item">
+              <div class="experience-item">
                 <div class="job-header">
                     <div class="job-title">Sports Tournament Management Platform</div>
-                    <div class="company">xantolohandball.com & y-sports.xyz</div>
+                    <div class="company">
+                        <a href="https://xantolohandball.com" target="_blank" rel="noopener noreferrer">xantolohandball.com</a> & 
+                        <a href="https://y-sports.xyz" target="_blank" rel="noopener noreferrer">y-sports.xyz</a>
+                    </div>
                 </div>
                 <div class="description">
                     <strong>Tournament Management System</strong>Built complete web platform for organizing sports tournaments, from team registration to live match tracking<br>
@@ -187,30 +206,29 @@
         </div>
 
         <div class="section">
-            <h2 class="section-title">Achievements</h2>
-            <div class="achievements-grid">
+            <h2 class="section-title">Achievements</h2>            <div class="achievements-grid">
                 <div class="achievement-item">
                     <h4>Certified Scrum Master</h4>
                     <p>Scrum Alliance (2015)</p>
                 </div>
                 <div class="achievement-item">
-                    <h4>System Modernization</h4>
-                    <p>Led multiple major system modernization projects</p>
+                    <h4>Enterprise Architecture Leadership</h4>
+                    <p>Led multiple large-scale system modernization and architectural transformation projects</p>
                 </div>
                 <div class="achievement-item">
-                    <h4>Performance Optimization</h4>
-                    <p>Optimized trading systems for zero-GC performance</p>
+                    <h4>High-Performance System Architecture</h4>
+                    <p>Designed zero-GC trading systems and microsecond-latency financial architectures</p>
                 </div>
                 <div class="achievement-item">
                     <h4>Team Leadership</h4>
-                    <p>Managed 30+ engineers in agile transformation</p>
+                    <p>Led 30+ engineers in company wide transformation</p>
                 </div>
                 <div class="achievement-item">
                     <h4>Languages</h4>
                     <p>English C1, German B2, Hungarian Native</p>
                 </div>
                 <div class="achievement-item">
-                    <h4>Enterprise Experience</h4>
+                    <h4>Enterprise Architecture Experience</h4>
                     <p>12+ years Deutsche Telekom & Morgan Stanley</p>
                 </div>
             </div>

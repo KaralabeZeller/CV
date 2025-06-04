@@ -47,81 +47,119 @@ body[data-theme="dark"] {
     top: 20px;
     right: 20px;
     z-index: 1000;
-    background: #1a1a1a;
-    border: 2px solid #333;
-    border-radius: 25px;
-    padding: 8px;
+    background: rgba(26, 26, 26, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 24px;
+    padding: 6px;
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 4px;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
 }
 
 @media (prefers-color-scheme: light) {
     .theme-switcher:not([data-theme]) {
-        background: #ffffff;
-        border-color: #e2e8f0;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        background: rgba(255, 255, 255, 0.95);
+        border-color: rgba(0, 0, 0, 0.1);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
     }
 }
 
 body[data-theme="light"] .theme-switcher {
-    background: #ffffff;
-    border-color: #e2e8f0;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    background: rgba(255, 255, 255, 0.95);
+    border-color: rgba(0, 0, 0, 0.1);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
 }
 
 body[data-theme="dark"] .theme-switcher {
-    background: #1a1a1a;
-    border-color: #333;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    background: rgba(26, 26, 26, 0.95);
+    border-color: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
 }
 
 .theme-button {
     background: none;
     border: none;
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    border-radius: 18px;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 16px;
-    transition: all 0.3s ease;
-    opacity: 0.6;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    opacity: 0.7;
+    color: #9ca3af;
+    position: relative;
+    overflow: hidden;
+}
+
+.theme-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: currentColor;
+    opacity: 0;
+    border-radius: 18px;
+    transition: opacity 0.3s ease;
 }
 
 .theme-button:hover {
     opacity: 1;
-    transform: scale(1.1);
+    transform: scale(1.05);
+}
+
+.theme-button:hover::before {
+    opacity: 0.1;
 }
 
 .theme-button.active {
     opacity: 1;
-    background: #4a9eff;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     color: white;
-    box-shadow: 0 2px 8px rgba(74, 158, 255, 0.3);
+    box-shadow: 0 4px 16px rgba(102, 126, 234, 0.4);
+    transform: scale(1.05);
+}
+
+.theme-button.active::before {
+    opacity: 0;
+}
+
+.theme-button svg {
+    width: 16px;
+    height: 16px;
+    transition: transform 0.3s ease;
+}
+
+.theme-button:hover svg {
+    transform: rotate(15deg);
+}
+
+.theme-button.theme-dark:hover svg {
+    transform: rotate(-15deg);
+}
+
+.theme-button.theme-auto:hover svg {
+    transform: scale(1.1);
 }
 
 @media (prefers-color-scheme: light) {
     .theme-button:not(.active) {
-        color: #4a5568;
+        color: #6b7280;
     }
 }
 
 body[data-theme="light"] .theme-button:not(.active) {
-    color: #4a5568;
+    color: #6b7280;
 }
 
 body[data-theme="dark"] .theme-button:not(.active) {
-    color: #aaa;
-}
-
-.theme-auto.active {
-    background: linear-gradient(45deg, #1a1a1a 50%, #ffffff 50%);
-    color: #4a9eff;
+    color: #9ca3af;
 }
 
 .header {
@@ -360,6 +398,25 @@ body[data-theme="light"] .name {
     }
 }
 
+/* Company links styling */
+.company a {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.3s ease, text-decoration 0.3s ease;
+    border-bottom: 1px solid transparent;
+}
+
+.company a:hover {
+    text-decoration: underline;
+    color: #4a9eff;
+}
+
+@media (prefers-color-scheme: light) {
+    .company a:hover {
+        color: #3182ce;
+    }
+}
+
 .duration {
     color: #666;
     font-size: 0.9rem;
@@ -403,9 +460,113 @@ body[data-theme="light"] .name {
     }
 }
 
+/* Technology Cards */
+.tech-cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid #333;
+}
+
+@media (prefers-color-scheme: light) {
+    .tech-cards {
+        border-top: 1px solid #e2e8f0;
+    }
+}
+
+.tech-card {
+    background: #1a1a1a;
+    color: #e0e0e0;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 400;
+    border: 1px solid #333;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.tech-card:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+@media (prefers-color-scheme: light) {
+    .tech-card {
+        background: #f7fafc;
+        color: #4a5568;
+        border: 1px solid #e2e8f0;
+    }
+    
+    .tech-card:hover {
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+}
+
+/* Technology card color variations */
+.tech-card.language {
+    background: #2d3748;
+    border-color: #4a5568;
+}
+
+.tech-card.framework {
+    background: #1a365d;
+    border-color: #2b6cb0;
+}
+
+.tech-card.database {
+    background: #2d1b69;
+    border-color: #553c9a;
+}
+
+.tech-card.tool {
+    background: #1a2e05;
+    border-color: #38a169;
+}
+
+.tech-card.cloud {
+    background: #744210;
+    border-color: #d69e2e;
+}
+
+@media (prefers-color-scheme: light) {
+    .tech-card.language {
+        background: #edf2f7;
+        color: #2d3748;
+        border-color: #cbd5e0;
+    }
+    
+    .tech-card.framework {
+        background: #ebf8ff;
+        color: #2b6cb0;
+        border-color: #90cdf4;
+    }
+    
+    .tech-card.database {
+        background: #faf5ff;
+        color: #553c9a;
+        border-color: #c4b5fd;
+    }
+    
+    .tech-card.tool {
+        background: #f0fff4;
+        color: #38a169;
+        border-color: #9ae6b4;
+    }
+    
+    .tech-card.cloud {
+        background: #fffbeb;
+        color: #d69e2e;
+        border-color: #fbd38d;
+    }
+}
+
+/* Achievements Grid */
 .achievements-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 20px;
     margin-top: 15px;
 }
@@ -413,38 +574,48 @@ body[data-theme="light"] .name {
 .achievement-item {
     background: #111;
     border: 1px solid #333;
-    padding: 15px;
-    border-radius: 4px;
-    transition: background-color 0.3s ease, border-color 0.3s ease;
+    padding: 20px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-@media (prefers-color-scheme: light) {
-    .achievement-item {
-        background: #ffffff;
-        border: 1px solid #e2e8f0;
-    }
+.achievement-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 .achievement-item h4 {
     color: #fff;
-    font-size: 1rem;
+    font-size: 1.1rem;
+    font-weight: 500;
     margin-bottom: 8px;
     transition: color 0.3s ease;
-}
-
-@media (prefers-color-scheme: light) {
-    .achievement-item h4 {
-        color: #1a202c;
-    }
 }
 
 .achievement-item p {
     color: #aaa;
     font-size: 0.9rem;
+    line-height: 1.4;
+    margin: 0;
     transition: color 0.3s ease;
 }
 
 @media (prefers-color-scheme: light) {
+    .achievement-item {
+        background: #ffffff;
+        border-color: #e2e8f0;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    }
+    
+    .achievement-item:hover {
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+    
+    .achievement-item h4 {
+        color: #1a202c;
+    }
+    
     .achievement-item p {
         color: #4a5568;
     }
@@ -527,9 +698,17 @@ body[data-theme="light"] .experience-item.telekom { border-left-color: #b8859f; 
 body[data-theme="light"] .experience-item.private-project { border-left-color: #999; }
 body[data-theme="light"] .job-title { color: #1a202c; }
 body[data-theme="light"] .company { color: #4a5568; }
+body[data-theme="light"] .company a:hover { color: #3182ce; }
 body[data-theme="light"] .duration { color: #718096; }
 body[data-theme="light"] .description { color: #4a5568; }
 body[data-theme="light"] .description strong { color: #1a202c; }
+body[data-theme="light"] .tech-cards { border-top-color: #e2e8f0; }
+body[data-theme="light"] .tech-card { background: #f7fafc; color: #4a5568; border-color: #e2e8f0; }
+body[data-theme="light"] .tech-card.language { background: #edf2f7; color: #2d3748; border-color: #cbd5e0; }
+body[data-theme="light"] .tech-card.framework { background: #ebf8ff; color: #2b6cb0; border-color: #90cdf4; }
+body[data-theme="light"] .tech-card.database { background: #faf5ff; color: #553c9a; border-color: #c4b5fd; }
+body[data-theme="light"] .tech-card.tool { background: #f0fff4; color: #38a169; border-color: #9ae6b4; }
+body[data-theme="light"] .tech-card.cloud { background: #fffbeb; color: #d69e2e; border-color: #fbd38d; }
 body[data-theme="light"] .achievement-item { background: #ffffff; border-color: #e2e8f0; }
 body[data-theme="light"] .achievement-item h4 { color: #1a202c; }
 body[data-theme="light"] .achievement-item p { color: #4a5568; }
@@ -553,9 +732,17 @@ body[data-theme="dark"] .experience-item.telekom { border-left-color: #c17a9b; }
 body[data-theme="dark"] .experience-item.private-project { border-left-color: #666; }
 body[data-theme="dark"] .job-title { color: #ffffff; }
 body[data-theme="dark"] .company { color: #888; }
+body[data-theme="dark"] .company a:hover { color: #4a9eff; }
 body[data-theme="dark"] .duration { color: #666; }
 body[data-theme="dark"] .description { color: #ccc; }
 body[data-theme="dark"] .description strong { color: #fff; }
+body[data-theme="dark"] .tech-cards { border-top-color: #333; }
+body[data-theme="dark"] .tech-card { background: #1a1a1a; color: #e0e0e0; border-color: #333; }
+body[data-theme="dark"] .tech-card.language { background: #2d3748; border-color: #4a5568; }
+body[data-theme="dark"] .tech-card.framework { background: #1a365d; border-color: #2b6cb0; }
+body[data-theme="dark"] .tech-card.database { background: #2d1b69; border-color: #553c9a; }
+body[data-theme="dark"] .tech-card.tool { background: #1a2e05; border-color: #38a169; }
+body[data-theme="dark"] .tech-card.cloud { background: #744210; border-color: #d69e2e; }
 body[data-theme="dark"] .achievement-item { background: #111; border-color: #333; }
 body[data-theme="dark"] .achievement-item h4 { color: #fff; }
 body[data-theme="dark"] .achievement-item p { color: #aaa; }
