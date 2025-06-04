@@ -1,0 +1,16 @@
+{
+    "name": "Gergő Fertetics CV",
+    "short_name": "GF CV",
+    "description": "Professional CV website of Gergő Fertetics - Software Engineer & Technical Lead",
+    "icons": [
+        {
+            "src": "cv.png",
+            "sizes": "any",
+            "type": "image/png"
+        }
+    ],
+    "theme_color": "#4a9eff",
+    "background_color": "#0a0a0a",
+    "start_url": "/",
+    "display": "standalone"
+}
