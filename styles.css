@@ -748,3 +748,34 @@ body[data-theme="dark"] .achievement-item h4 { color: #fff; }
 body[data-theme="dark"] .achievement-item p { color: #aaa; }
 body[data-theme="dark"] .accent { color: #4a9eff; }
 body[data-theme="dark"] .muted { color: #666; }
+
+/* Mobile responsive styles */
+@media (max-width: 768px) {
+    .theme-switcher {
+        position: fixed;
+        top: auto;
+        bottom: 20px;
+        right: 10px;
+        width: auto;
+        justify-content: center;
+    }
+    
+    .container {
+        padding: 15px;
+        padding-bottom: 100px; /* Extra space for theme switcher */
+    }
+    
+    .info-item {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+        margin-bottom: 12px;
+    }
+    
+    .info-label {
+        width: auto;
+        display: block;
+        font-weight: 500;
+        margin-bottom: 0;
+    }
+}
